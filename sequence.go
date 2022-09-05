@@ -41,7 +41,7 @@ func (seq *Sequence) Remove(index int) {
 // Update updates the currently active Tween in the Sequence; once that Tween is done, the Sequence moves onto the next one.
 // Update() returns the current Tween's output, whether that Tween is complete, and whether the entire Sequence was completed
 // during this Update.
-func (seq *Sequence) Update(dt float32) (float32, bool, bool) {
+func (seq *Sequence) Update(dt float64) (float64, bool, bool) {
 	if !seq.HasTweens() {
 		return 0, false, true
 	}

@@ -6,7 +6,7 @@ import (
 )
 
 func TestEasingFunctions(t *testing.T) {
-	testValues := map[string][]float32{
+	testValues := map[string][]float64{
 		"InBack":       {0, -0.07832505, -0.2862844, -0.58335435, -0.9290112, -1.28273125, -1.6039908, -1.85226615, -1.9870336, -1.96776945, -1.75395, -1.30505155, -0.5805504, 0.46007715, 1.8573548, 3.65180625, 5.8839552, 8.59432535, 11.8234404, 15.61182405, 20},
 		"InBounce":     {0, 0.309375, 0.2375, 1.096875, 1.2, 0.546875, 1.3875, 3.346875, 4.55, 4.996875, 4.6875, 3.621875, 1.8, 1.471875, 6.3875, 10.546875, 13.95, 16.596875, 18.4875, 19.621875, 20},
 		"InCirc":       {0, 0.025015644561821, 0.1002512578676, 0.22628006671481, 0.40408205773458, 0.63508326896291, 0.92121597166109, 1.2650060048048, 1.6696972201766, 2.1394289005082, 2.6794919243112, 3.2967069115099, 4, 4.8013158464293, 5.7171431429143, 6.771243444677, 8, 9.4643462471473, 11.282202112919, 13.755002001602, 20},
@@ -96,14 +96,14 @@ func TestEasingFunctions(t *testing.T) {
 
 	for easingName, values := range testValues {
 		easing := easingFunctions[easingName]
-		begin := float32(0)
+		begin := float64(0)
 		end := values[len(values)-1]
 		change := end - begin
-		duration := float32(len(values) - 1)
+		duration := float64(len(values) - 1)
 
 		t.Run(easingName, func(t *testing.T) {
 			for i, value := range values {
-				current := easing(float32(i), begin, change, duration)
+				current := easing(float64(i), begin, change, duration)
 				if math.Abs(float64(current-value)) > 0.03 {
 					t.Fatalf("failed %s with value %v \nexpected: %v\ngot: %v\ndiff: %v", easingName, i, value, current, math.Abs(float64(current-value)))
 				}

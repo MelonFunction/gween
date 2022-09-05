@@ -22,12 +22,12 @@ var tweenLabel = gween.new(0, 300, 4, ease.OutBounce)
 label.Y, _ = tweenLabel.Update(dt)
 
 // fade background from white to black and foregrond from black to red in 2 seconds
-currentBGColor = [4]float32{255, 255, 255, 255}
-currentColor = [4]float32{0, 0, 0, 0}
+currentBGColor = [4]float64{255, 255, 255, 255}
+currentColor = [4]float64{0, 0, 0, 0}
 var tweenBackground = gween.new(255, 0, 2, ease.Linear)
 var tweenRed = gween.new(255, 0, 2, ease.Linear)
 currentBG, _ := tweenBackground.Update(dt)
-currentBGColor = [4]float32{currentBG, currentBG, currentBG, currentBG}
+currentBGColor = [4]float64{currentBG, currentBG, currentBG, currentBG}
 currentColor[0], _ = tweenRed.Update(dt)
 
 // sequence increasing linearly from 0 to 4 over 10 seconds, 
@@ -227,7 +227,7 @@ Each family (except `linear`) has 4 variants:
 You are not limited to gween's easing functions; if you pass a function parameter
 in the easing, it will be used.
 
-The passed function will need to suite the TweenFunc interface: `func(t, b, c, d float32) float32`
+The passed function will need to suite the TweenFunc interface: `func(t, b, c, d float64) float64`
 
 * `t` (time): starts in 0 and usually moves towards duration
 * `b` (begin): initial value of the of the property being eased.
@@ -239,7 +239,7 @@ And must return the new value after the interpolation occurs.
 Here's an example using a custom easing.
 
 ```golang
-labelTween := tween.new(0, 300, 4, func(t, b, c, d) float32 {
+labelTween := tween.new(0, 300, 4, func(t, b, c, d) float64 {
   return c*t/d + b // linear ease
 })
 ```

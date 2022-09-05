@@ -1,4 +1,4 @@
-module github.com/tanema/gween
+module github.com/melonfunction/gween
 
 go 1.13
 

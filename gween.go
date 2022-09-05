@@ -3,7 +3,7 @@
 // the easing functions.
 package gween
 
-import "github.com/tanema/gween/ease"
+import "github.com/melonfunction/gween/ease"
 
 type (
 	// Tween encapsulates the easing function along with timing data. This allows

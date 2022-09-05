@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/tanema/gween/ease"
+	"github.com/melonfunction/gween/ease"
 )
 
 func TestSequenceNew(t *testing.T) {

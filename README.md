@@ -3,6 +3,8 @@
 Gween (go-between) is a small library to perform [tweening](http://en.wikipedia.org/wiki/Tweening) in Go. It has a minimal
 interface, and it comes with several easing functions.
 
+⚠️ This version uses float64 instead of float32 because it works better with ebiten ⚠️
+
 # Examples
 
 ```golang
@@ -18,14 +20,14 @@ var tweenLinear = gween.New(0, 5, 10, ease.Linear)
 current, isFinished := tweenLinear.Update(dt)
 
 // make some text fall from the top of the screen, bouncing on y=300, in 4 seconds
-var tweenLabel = gween.new(0, 300, 4, ease.OutBounce)
+var tweenLabel = gween.New(0, 300, 4, ease.OutBounce)
 label.Y, _ = tweenLabel.Update(dt)
 
 // fade background from white to black and foregrond from black to red in 2 seconds
 currentBGColor = [4]float64{255, 255, 255, 255}
 currentColor = [4]float64{0, 0, 0, 0}
-var tweenBackground = gween.new(255, 0, 2, ease.Linear)
-var tweenRed = gween.new(255, 0, 2, ease.Linear)
+var tweenBackground = gween.New(255, 0, 2, ease.Linear)
+var tweenRed = gween.New(255, 0, 2, ease.Linear)
 currentBG, _ := tweenBackground.Update(dt)
 currentBGColor = [4]float64{currentBG, currentBG, currentBG, currentBG}
 currentColor[0], _ = tweenRed.Update(dt)
@@ -55,7 +57,7 @@ Creates a new tween.
 
 * `begin` is the start value
 * `end` is the ending value
-* `duration` means how much the change will take until it's finished. It must be a positive number.
+* `duration` means how long the change will take until it's finished. It must be a positive number.
 * `easingFunction` can be either a function or a function name (see the easing section below).
 
 This function only creates and returns the tween. It must be captured in a variable
@@ -239,7 +241,7 @@ And must return the new value after the interpolation occurs.
 Here's an example using a custom easing.
 
 ```golang
-labelTween := tween.new(0, 300, 4, func(t, b, c, d) float64 {
+labelTween := tween.New(0, 300, 4, func(t, b, c, d) float64 {
   return c*t/d + b // linear ease
 })
 ```
